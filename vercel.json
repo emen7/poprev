@@ -2,7 +2,18 @@
   "version": 2,
   "buildCommand": "npm run build:client",
   "outputDirectory": "client/dist",
+  "functions": {
+    "api/*.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
   "routes": [
+    { "src": "/api/health", "dest": "/api/health.ts" },
+    { "src": "/api/responses", "dest": "/api/responses.ts" },
+    { "src": "/api/responses/(.*)", "dest": "/api/responses.ts?id=$1" },
+    { "src": "/api/categories", "dest": "/api/categories.ts" },
+    { "src": "/api/categories/(.*)", "dest": "/api/categories.ts?id=$1" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/client/dist/index.html" }
   ]
