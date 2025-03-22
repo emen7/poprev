@@ -21,6 +21,9 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderProps) => {
             <Link to="/responses" className="font-medium hover:text-blue-600 dark:hover:text-blue-400">
               Responses
             </Link>
+            <Link to="/categories" className="font-medium hover:text-blue-600 dark:hover:text-blue-400">
+              Categories
+            </Link>
             <Link to="/about" className="font-medium hover:text-blue-600 dark:hover:text-blue-400">
               About
             </Link>

@@ -4,6 +4,7 @@ import { useState } from 'react'
 // Pages
 import Home from './pages/Home'
 import About from './pages/About'
+import Categories from './pages/Categories'
 import Responses from './pages/Responses'
 import ResponseDetail from './pages/ResponseDetail'
 import NotFound from './pages/NotFound'
@@ -28,6 +29,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+              <Route path="/categories" element={<Categories />} />
               <Route path="/responses" element={<Responses />} />
               <Route path="/responses/:id" element={<ResponseDetail />} />
               <Route path="*" element={<NotFound />} />
