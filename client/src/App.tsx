@@ -44,51 +44,34 @@ function App() {
     }
   }, [themeMode]);
 
-  // Visual feedback ref for theme change
-  const [themeTransition, setThemeTransition] = useState(false);
-  
   /**
-   * Toggle between theme modes with enhanced error handling
-   * and visual feedback when changing themes
+   * Simple theme toggle with fallback
    */
   const toggleTheme = () => {
     try {
-      // Cycle through themes: light → dark → system → light
-      let newTheme: ThemeMode = 'dark';
-      if (themeMode === 'light') newTheme = 'dark';
-      else if (themeMode === 'dark') newTheme = 'system';
-      else newTheme = 'light';
+      // Simpler cycle: dark → light → dark (skip system for reliability)
+      const newTheme: ThemeMode = themeMode === 'dark' ? 'light' : 'dark';
       
-      // Provide visual feedback when theme changes
-      setThemeTransition(true);
-      setTimeout(() => setThemeTransition(false), 400);
+      // Update state first
+      setThemeMode(newTheme);
       
-      // Update localStorage and state
+      // Then try to persist to localStorage
       try {
         localStorage.setItem('theme', newTheme);
       } catch (storageError) {
-        // Silent fail if localStorage is not available
         console.warn('Could not save theme preference:', storageError);
       }
-      
-      setThemeMode(newTheme);
     } catch (error) {
-      console.error('Failed to update theme:', error);
-      // Fallback to dark theme if something goes wrong
-      setThemeMode('dark');
+      console.error('Theme toggle failed:', error);
+      // Just toggle the dark mode directly as fallback
+      setIsDarkMode(!isDarkMode);
     }
   };
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
       <Router>
-        {/* Theme transition flash effect */}
-        {themeTransition && (
-          <div 
-            className="fixed inset-0 bg-white dark:bg-gray-900 bg-opacity-30 dark:bg-opacity-30 z-[100] pointer-events-none"
-            style={{ animation: 'theme-flash 0.4s ease-out forwards' }}
-          />
-        )}
+        {/* No flash effect - simplified UI */}
         <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50 transition-colors duration-300">
           <Header darkMode={isDarkMode} toggleDarkMode={toggleTheme} />
           <main className="flex-grow">
