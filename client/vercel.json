@@ -3,7 +3,19 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "functions": {
+    "api/*.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
   "routes": [
+    { "src": "/api/health", "dest": "/api/health.ts" },
+    { "src": "/api/init-db", "dest": "/api/init-db.ts" },
+    { "src": "/api/responses", "dest": "/api/responses.ts" },
+    { "src": "/api/responses/(.*)", "dest": "/api/responses.ts?id=$1" },
+    { "src": "/api/categories", "dest": "/api/categories.ts" },
+    { "src": "/api/categories/(.*)", "dest": "/api/categories.ts?id=$1" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
