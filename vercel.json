@@ -10,6 +10,7 @@
   },
   "routes": [
     { "src": "/api/health", "dest": "/api/health.ts" },
+    { "src": "/api/init-db", "dest": "/api/init-db.ts" },
     { "src": "/api/responses", "dest": "/api/responses.ts" },
     { "src": "/api/responses/(.*)", "dest": "/api/responses.ts?id=$1" },
     { "src": "/api/categories", "dest": "/api/categories.ts" },
