@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Apply base styles */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
 /* Animation keyframes */
 @keyframes theme-flash {
   0% {
