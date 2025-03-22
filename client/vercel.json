@@ -11,11 +11,11 @@
   },
   "routes": [
     { "src": "/api/health", "dest": "/api/health.ts" },
-    { "src": "/api/init-db", "dest": "/api/init-db.ts" },
-    { "src": "/api/responses", "dest": "/api/responses.ts" },
-    { "src": "/api/responses/(.*)", "dest": "/api/responses.ts?id=$1" },
-    { "src": "/api/categories", "dest": "/api/categories.ts" },
-    { "src": "/api/categories/(.*)", "dest": "/api/categories.ts?id=$1" },
+    { "src": "/api/init-storage", "dest": "/api/init-storage.ts" },
+    { "src": "/api/responses", "dest": "/api/responses-vercel.ts" },
+    { "src": "/api/responses/(.*)", "dest": "/api/responses-vercel.ts?id=$1" },
+    { "src": "/api/categories", "dest": "/api/categories-vercel.ts" },
+    { "src": "/api/categories/(.*)", "dest": "/api/categories-vercel.ts?id=$1" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
