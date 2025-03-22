@@ -44,10 +44,21 @@ function App() {
     }
   }, [themeMode]);
 
+  // Update theme and also ensure localStorage is updated 
   const toggleTheme = () => {
-    if (themeMode === 'light') setThemeMode('dark');
-    else if (themeMode === 'dark') setThemeMode('system');
-    else setThemeMode('light');
+    try {
+      let newTheme: ThemeMode = 'dark';
+      if (themeMode === 'light') newTheme = 'dark';
+      else if (themeMode === 'dark') newTheme = 'system';
+      else newTheme = 'light';
+      
+      // Update localStorage first
+      localStorage.setItem('theme', newTheme);
+      // Then update state
+      setThemeMode(newTheme);
+    } catch (error) {
+      console.error('Failed to update theme:', error);
+    }
   };
 
   return (
