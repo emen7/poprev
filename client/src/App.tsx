@@ -44,27 +44,52 @@ function App() {
     }
   }, [themeMode]);
 
-  // Update theme and also ensure localStorage is updated 
+  // Visual feedback ref for theme change
+  const [themeTransition, setThemeTransition] = useState(false);
+  
+  /**
+   * Toggle between theme modes with enhanced error handling
+   * and visual feedback when changing themes
+   */
   const toggleTheme = () => {
     try {
+      // Cycle through themes: light → dark → system → light
       let newTheme: ThemeMode = 'dark';
       if (themeMode === 'light') newTheme = 'dark';
       else if (themeMode === 'dark') newTheme = 'system';
       else newTheme = 'light';
       
-      // Update localStorage first
-      localStorage.setItem('theme', newTheme);
-      // Then update state
+      // Provide visual feedback when theme changes
+      setThemeTransition(true);
+      setTimeout(() => setThemeTransition(false), 400);
+      
+      // Update localStorage and state
+      try {
+        localStorage.setItem('theme', newTheme);
+      } catch (storageError) {
+        // Silent fail if localStorage is not available
+        console.warn('Could not save theme preference:', storageError);
+      }
+      
       setThemeMode(newTheme);
     } catch (error) {
       console.error('Failed to update theme:', error);
+      // Fallback to dark theme if something goes wrong
+      setThemeMode('dark');
     }
   };
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
       <Router>
-        <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50">
+        {/* Theme transition flash effect */}
+        {themeTransition && (
+          <div 
+            className="fixed inset-0 bg-white dark:bg-gray-900 bg-opacity-30 dark:bg-opacity-30 z-[100] pointer-events-none"
+            style={{ animation: 'theme-flash 0.4s ease-out forwards' }}
+          />
+        )}
+        <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50 transition-colors duration-300">
           <Header darkMode={isDarkMode} toggleDarkMode={toggleTheme} />
           <main className="flex-grow">
             <Routes>
