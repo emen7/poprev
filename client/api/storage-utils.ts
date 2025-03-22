@@ -1,4 +1,5 @@
-import { put, del, list } from '@vercel/blob';
+// Import just what we need - we're only using it for type checking in this version
+import { put } from '@vercel/blob';
 
 // Type definitions
 export interface Response {

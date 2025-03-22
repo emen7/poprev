@@ -1,5 +1,5 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { responseStorage } from './storage-utils';
+import { responseStorage } from './storage-utils.js';
 
 // API handler for responses
 export default async function handler(req: VercelRequest, res: VercelResponse) {

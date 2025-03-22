@@ -1,5 +1,5 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { initializeStorage } from './storage-utils';
+import { initializeStorage } from './storage-utils.js';
 
 // This is a utility endpoint to initialize our mock/Vercel storage
 export default async function handler(req: VercelRequest, res: VercelResponse) {

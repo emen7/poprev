@@ -1,5 +1,5 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { categoryStorage } from './storage-utils';
+import { categoryStorage } from './storage-utils.js';
 
 // API handler for categories
 export default async function handler(req: VercelRequest, res: VercelResponse) {
