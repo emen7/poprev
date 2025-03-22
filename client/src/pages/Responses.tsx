@@ -33,8 +33,8 @@ const MOCK_RESPONSES = [
 ]
 
 const Responses = () => {
-  const [responses, setResponses] = useState(MOCK_RESPONSES)
-  const [loading, setLoading] = useState(false)
+  const [responses] = useState(MOCK_RESPONSES)
+  const [loading] = useState(false)
 
   // In a real app, this would fetch from the API
   useEffect(() => {

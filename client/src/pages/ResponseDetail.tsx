@@ -35,8 +35,8 @@ const MOCK_RESPONSE = {
 
 const ResponseDetail = () => {
   const { id } = useParams<{ id: string }>()
-  const [response, setResponse] = useState(MOCK_RESPONSE)
-  const [loading, setLoading] = useState(false)
+  const [response] = useState(MOCK_RESPONSE)
+  const [loading] = useState(false)
 
   useEffect(() => {
     // This would fetch from API in real app
