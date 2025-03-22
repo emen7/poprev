@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 
 type HeaderProps = {
-  darkMode: boolean
-  toggleDarkMode: () => void
+  darkMode: boolean // Visual state of dark mode
+  toggleDarkMode: () => void // Function to toggle theme
 }
 
-const Header = ({ darkMode, toggleDarkMode }: HeaderProps) => {
+// Now we use the toggleDarkMode but read the current theme from localStorage
+const Header = ({ toggleDarkMode }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
